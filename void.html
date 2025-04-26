@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$VOID — Embrace the Absence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #e6e6e6;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    a {
+      color: #ff0070;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #00f0ff;
+      text-shadow: 0 0 8px #00f0ff;
+    }
+    .container {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      z-index: 10;
+    }
+    .glitch {
+      font-size: 2rem;
+      text-align: center;
+      color: #fff;
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      20% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      40% { text-shadow: 2px 2px red, -2px -2px cyan; }
+      60% { text-shadow: 0px 2px red, 0px -2px cyan; }
+      80% { text-shadow: -2px 2px red, 2px -2px cyan; }
+      100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+    }
+    .section {
+      margin: 60px 0;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 2px solid #ff0070;
+      color: #ff0070;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 20px;
+      transition: 0.2s ease-in-out;
+    }
+    .button:hover {
+      background-color: #ff0070;
+      color: #000;
+      box-shadow: 0 0 10px #ff0070;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    .static-noise {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif') repeat;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .phrase {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 30px;
+      color: #aaa;
+    }
+    .cursor-dot {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background-color: #ff0070;
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    .cult-generator input {
+      background: #111;
+      border: 1px solid #333;
+      color: #eee;
+      padding: 10px;
+      width: 80%;
+      font-family: inherit;
+      margin-bottom: 10px;
+    }
+    .cult-generator button {
+      padding: 10px 20px;
+      background: none;
+      color: #ff0070;
+      border: 1px solid #ff0070;
+      cursor: pointer;
+    }
+    .cult-generator button:hover {
+      background: #ff0070;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="static-noise"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <div class="container">
+    <h1 class="glitch">THE VOID IS HERE<span class="blink">_</span></h1>
+    <div class="phrase" id="randomPhrase"></div>
+
+    <div class="section">
+      <p>
+        $VOID is a token that represents absolutely nothing.
+        No roadmap. No promises. No utility. Just pure, beautiful absence.
+      </p>
+      <a href="https://pump.fun" class="button" target="_blank">Buy $VOID</a>
+    </div>
+
+    <div class="section">
+      <h2>What is $VOID?</h2>
+      <p>
+        $VOID is an experiment in embracing the absurdity of meme coins.
+        It's a satirical response to fake promises and overengineered nonsense.
+        It is a space for those who see through the noise — and dive into the silence.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Whitepaper</h2>
+      <p>
+        <a href="#" onclick="document.body.innerHTML = ''; document.body.style.background='#000'; return false;">Click here</a> to read our whitepaper. It’s exactly what you expect — nothing.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Join the Cult</h2>
+      <p>
+        $VOID lives where silence thrives. Join our community of believers, memers, and nihilists.
+        Telegram, Twitter, Discord — just search "thevoidtoken".
+      </p>
+    </div>
+
+    <div class="section cult-generator">
+      <h2>Claim your cult name</h2>
+      <input type="text" id="userInput" placeholder="Enter your soul..." />
+      <br>
+      <button onclick="generateName()">Submit to the VOID</button>
+      <p id="cultResult"></p>
+    </div>
+
+    <div class="footer">
+      ⬤ silence is utility<br>
+      ⬤ launched on pump.fun<br>
+      ⬤ we are the end
+    </div>
+  </div>
+
+  <script>
+    const phrases = [
+      "You are not early. You are irrelevant.",
+      "Embrace the noise. Then silence it.",
+      "We promise nothing. We deliver absence.",
+      "Your bags are full of void.",
+      "Decentralized despair. On-chain.",
+      "Some tokens moon. Some collapse. $VOID disappears."
+    ];
+    document.getElementById("randomPhrase").textContent = phrases[Math.floor(Math.random() * phrases.length)];
+
+    const cursor = document.getElementById("cursorDot");
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.pageX + "px";
+      cursor.style.top = e.pageY + "px";
+    });
+
+    function generateName() {
+      const input = document.getElementById("userInput").value.trim();
+      if (!input) return;
+      const glitched = `${input.slice(0, 3)}_VOID_${Math.floor(Math.random() * 9999)}`.replace(/ /g, "_");
+      document.getElementById("cultResult").textContent = `Your name: ${glitched}`;
+    }
+  </script>
+</body>
+</html>
